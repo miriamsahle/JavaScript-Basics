@@ -1,3 +1,5 @@
+//JAVASCRIPT BASICS
+
 //shorthand notation
 
  let apples = 10;
@@ -95,3 +97,121 @@ console.log(apples);
 
  console.log(result1, typeof result1, result2, result3, result4);
 
+
+
+
+// CONTROL FLOW BASICS
+
+// for loops
+
+ for(let i = 0; i < 5; i++) {
+    console.log('in loop: ', i);
+ };
+ console.log('loop finished');
+
+ const names = ['eren', 'mikasa', 'armin'];
+// if you dont know how many elements there is in the array, use 'abc.length'.
+for(let i=0; i < names.length; i++) { 
+    //console.log(names[i]);
+     let html = `<div>${names[i]}</div>`;
+     console.log(html);
+};
+ 
+//while loops 
+
+const namae = ['mario', 'luigi', 'frog'];
+let i = 0;
+
+while(i < namae.length) {
+    console.log(namae[i]);
+    i++;
+};
+
+//do while loops
+let j = 3;
+
+do {
+    console.log('val of j is: ', j);
+    j++;
+} while(j < 5);
+
+
+
+// if, else if, else statements + logical operators or ||, and &&
+
+const password = 'p@ss';
+
+if(password.length >= 12 && password.includes('@')){
+    console.log("Thats a long a** password, proud of you son!!!");
+} else if(password.length >= 8 || password.includes('@') && password.length > 5){
+    console.log("good enough password, barely made it...");
+} else {
+    console.log("Fam..the password's hella mid, are you not embarrrassed?!");
+}
+
+// logical NOT (!)
+
+let user = false;
+
+if(!user) { //without the '!' the if statement doesnt display anythin on console, because the user = true.
+    console.log("you must log in to continue");
+}
+
+// break and continue
+
+const scores = [50, 25, 0, 30, 100, 20, 10];
+
+for(let i = 0; i < scores.length; i++) {
+    if(scores[i] === 0){
+        continue; //this will take out element "0" on the console and continue with the loop. 
+    }
+
+    console.log("your score: ", scores[i]);
+
+    if(scores[i] === 100){
+        console.log("You got the mf HIGHEST score dawggg, AYEEEEE");
+        break;
+    }
+};
+
+// switch statements 
+
+const grade = 'A';
+
+switch(grade) {
+    case 'A':
+        console.log("You got an A,damnnnn!");
+        break;
+    case 'B':
+        console.log("grade B, das wassup");
+        break;
+    case 'C':
+        console.log("grade C sheeeesh");
+        break;
+    case 'D':
+        console.log("grade D, is aight");
+        break;
+    case 'E':
+        console.log("grade E, mid..");
+        break;
+    default:
+        console.log("not a grade????");
+};
+
+
+// variables and block scope
+
+let anos = 30;
+
+if(true) {
+    let anos = 40;
+    let jeSuis = 'Mario';
+    console.log("inside the 1st code block: ", anos, jeSuis);
+
+    if(true) {
+        let anos = 50;
+        console.log("inside the 2nd code block: ", anos);
+    }
+}
+
+console.log("outside the code block: ", anos);

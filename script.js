@@ -215,3 +215,139 @@ if(true) {
 }
 
 console.log("outside the code block: ", anos);
+
+
+// FUNCTIONS & METHODS 
+
+// Remeber with a function expression you have to declare it first before running the function BUT with function declaration you can put it anywhere on your code, it doesnt matter. its called "hoisting".
+// function expression
+const speak = function() {
+    console.log('ITS LITTT');    
+};
+
+speak();
+speak();
+speak();
+
+greet();
+greet();
+greet();
+
+// function declaration
+function greet() {
+    console.log('YUUUUUURRR');
+}
+
+
+//arguments & parameters 
+const day = function(name='luigi', time='moonlight'){  //defining the parameters in the function gives it a default value.
+    console.log(`good ${time} ${name}`)
+};
+
+day();
+day('mario');
+day('princess', 'twilight');
+
+
+//returning values, "return" in a function allows us to use that value outisde of the function. i.e:
+//fyi, this is a regular function:
+const calcArea = function(radius) {
+    return 3.14 * radius**2;
+};
+
+const area = calcArea(5);
+console.log(area);
+
+
+//arrow function
+//if you only have on parameter in the fucntion you dont need the parenthesis around it. 
+
+const calcArea1 = radius => 3.14 * radius**2;
+
+const area1 = calcArea1(6);
+console.log('area is ', area1);
+
+// Practise arrow functions
+
+// const greet = function(){
+//    return 'hello world';
+// };
+const greetings = () => 'hello world';
+
+const ready = greetings();
+console.log(ready);
+
+// const bill = function(products, tax){
+//     let total = 0;
+//     for(let i = 0; i < products.length; i++){
+//         total += products[i] + products[i] * tax;
+//     }
+//     return total;
+// }
+
+//this arrrow functions is pretty similiar to the regular function above BECAUSE there is more statements running in this code hence why it couldnt be shortened further.
+const bill = (products, tax) => {
+    let total = 0;
+    for(let i = 0; i < products.length; i++){
+        total += products[i] + products[i] * tax;
+    }
+    return total;
+};
+
+console.log(bill([10,15,30], 0.2));
+
+//Functions vs Methods, the difference is how we call them and where they are defined...
+
+const nameOne = 'luigi';
+// functions
+const greetOne = () => 'Ho HO HO HO MERry Christmas';
+
+let resultOne = greetOne();
+console.log(resultOne);
+
+// methods
+let resultTwo = nameOne.toUpperCase();
+console.log(resultTwo);
+// methods are functions BUT they are functions which are associated with an object or data type
+
+
+//callbacks & forEach
+const myFunc = callBackFunc => {
+    //do something
+    let value = 50;
+    callBackFunc(value);
+};
+// here we are calling back a function in a function:
+myFunc(value => {
+    // do something
+    console.log(value);
+});
+
+let plural = ['her', 'him', 'they', 'them', 'us'];
+
+const logSingular = (singular, index) => {
+    console.log(`${index} - ELLO ${singular}`)
+};
+
+// plural.forEach((singular, index) => {
+//     console.log(index, singular);
+// });
+
+//write the above with less code:
+plural.forEach(logSingular);
+
+
+// callback functions in action
+const ul = document.querySelector('.people');
+
+let pluralOne = ['her', 'him', 'they', 'them', 'us'];
+
+let htmlOne = ``;
+
+pluralOne.forEach(singular => {
+    //create html template
+    htmlOne += `<li style="color: orange">${singular}</li>`;
+});
+
+console.log(htmlOne);
+ul.innerHTML = htmlOne;

@@ -2,10 +2,10 @@
 
 //shorthand notation
 
- let apples = 10;
+let apples = 10;
 
- apples++; // adds  +1 
- apples--; // subs -1
+apples++; // adds  +1 
+apples--; // subs -1
 
  apples += 10; // adds 10 
  apples -= 5; // subs 5 
@@ -95,7 +95,7 @@ console.log(apples);
  let result3 = Boolean(0); // returns false. 
  let result4 = Boolean(' '); // returns true. because this asks if its a string
 
- console.log(result1, typeof result1, result2, result3, result4);
+console.log(result1, typeof result1, result2, result3, result4);
 
 
 
@@ -215,6 +215,8 @@ if(true) {
 }
 
 console.log("outside the code block: ", anos);
+
+
 
 
 // FUNCTIONS & METHODS 
@@ -351,3 +353,108 @@ pluralOne.forEach(singular => {
 
 console.log(htmlOne);
 ul.innerHTML = htmlOne;
+
+
+
+// OBJECT LITERALS 
+
+let userOne = {
+    name: 'Miri',
+    age: 80,
+    email: 'lalaland@gmail.com',
+    location: 'Peru',
+    //objects in arrays:
+    blogs: [
+        {title: 'Live laugh Death', likes: 40},
+        {title: 'Yo mama so big..', likes: 75} 
+    ],
+    login(){                                  //this is a function that is definied in an object AKA A METHOD!
+        console.log('user is logged in');
+    },
+    logout(){                      //functions in a object has to be regular functions BUT you can use a shorthand ex
+        console.log('user went home..');
+    },
+    logBlogs(){
+        console.log('dis user has written all of these blogs, mad corny: ');
+        this.blogs.forEach(blog => {
+            console.log(blog.title, blog.likes);
+        });
+    }
+};
+
+console.log(userOne);
+console.log(userOne.name);
+
+userOne.age = 77;
+console.log(userOne.age);
+
+console.log(userOne['email']);
+userOne['location'] = 'Madagascar';
+console.log(userOne['location']);
+
+console.log(typeof userOne);
+
+// adding methods
+userOne.login();
+userOne.logout();
+
+const namee = 'mario';
+namee.toUpperCase(); //this toUppeCase method is a function definied in a string object built in to JavaScript!
+
+//Remember a regular function isnt definied in a object but a METHOD is, voila thats the differencé~!
+
+// 'this' keyword
+userOne.logBlogs();
+console.log(this); //if this is used like this it will show the window smth on the console..
+// cant use 'this' in a arrow function, it has to be a regular function in (an object)..
+
+// Math Object
+
+console.log(Math);
+console.log(Math.PI);
+console.log(Math.E);
+
+const arean = 4.5;
+
+console.log(Math.round(arean)); //rounds the number
+console.log(Math.floor(arean)); // rounds the number to the "floor", aka rounds it down
+console.log(Math.ceil(arean));  // rounds the number to the "ceil", aka rounds it up
+console.log(Math.trunc(arean));  // deletes the decimal
+
+const random = Math.random(); //math.random method only gives your random numbers between 0 and 1.
+
+console.log(random);
+console.log(Math.round(random*100)); //multiplying it with a hundred to get a random number between 0-100.
+
+
+//PRIMITIVE & REFERENCE TYPES
+
+//Primitive types: number, strings, Booleans, null, undefined, symbols
+
+//Reference types: all types of objects, object literals, arrays, functions, dates, all other objects
+
+// primitive values 
+ let scoreOne = 50;
+ let scoreTwo = scoreOne;
+
+ console.log(`scoreOne: ${scoreOne}`, `scoreTwo: ${scoreTwo}`);
+
+ scoreOne = 100;
+
+ console.log(`scoreOne: ${scoreOne}`, `scoreTwo: ${scoreTwo}`);
+ // the scoreOne is 100 but the scoreTwo is still 50, because when we make a copy (like above) in primitive values-
+ // -changing one of them doesnt affect the other!!!
+
+ // reference values
+ const userThree = { name: 'lily', age: 90}; // we get a pointer locked to this variable
+ const userFour = userThree; //in refence values like this, it doesnt copy the object it only copies the pointer!!
+
+ console.log(userThree, userFour);
+
+ userThree.name = 'Brian';
+ console.log(userThree, userFour); //userFour also changes to Brian as it copies userThree and not the object.
+
+
+
+
+

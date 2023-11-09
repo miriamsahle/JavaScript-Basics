@@ -452,9 +452,196 @@ console.log(Math.round(random*100)); //multiplying it with a hundred to get a ra
  console.log(userThree, userFour);
 
  userThree.name = 'Brian';
- console.log(userThree, userFour); //userFour also changes to Brian as it copies userThree and not the object.
+console.log(userThree, userFour); //userFour also changes to Brian as it copies userThree and not the object.
 
 
 
 
+// THE DOCUMENT OBJECT MODEL
 
+// the query selector: to query the dom and get a single element
+
+const para = document.querySelector('p'); // this will refer to the first p tag in the html.
+const errot = document.querySelector('.error'); // this will refer to a tag with the class'error'.
+const errror = document.querySelector('div.error'); // this specifically refers to a div tag with a class named 'error'.
+
+console.log(para);
+console.log(errot);
+console.log(errror);
+
+// the query selector All : to get all the elements
+
+const paras = document.querySelectorAll('p'); //this gets all the p tags in one node list.
+const erroror = document.querySelectorAll('.error'); //gives us all the error class
+
+paras.forEach(para => {
+    console.log(para);
+})
+
+console.log(erroror);
+console.log(paras);
+console.log(paras[2]); //this gives us the third element in the node list
+
+// get an element by ID 
+const titel = document.getElementById('page-title');
+
+console.log(titel);
+
+// get an element by their class name 
+const ermm = document.getElementsByClassName('error');
+
+console.log(ermm[0]);
+console.log(ermm); // we see an HTML Collection on the console instead of a node list. they are similiar BUT!!! you cant use forEach method..
+// this under will not work:
+// ermm.forEach(erm => {
+//    console.log(erm);
+// })
+
+// get an element by their tag name 
+const pepee = document.getElementsByTagName('p');
+console.log(pepee);
+console.log(pepee[0]);
+
+const paragraph = document.querySelector('p');
+// console.log(paragraph.innerText); // this gives us the inner text of that elelemetn
+paragraph.innerText += ' is f***kin LIIITYYY'; //if you want it to append (add), use '+=' 
+
+const paraOne = document.querySelectorAll('p');
+
+paraOne.forEach(para => {
+    console.log(para);
+    para.innerText += ' new texttt';
+})
+
+const content = document.querySelector('.content');
+
+// console.log(content.innerHTML);
+ content.innerHTML = '<h2>This is the newest most coolest repleacemnetatat eveooor :)</h2>'; //doing this it overwrites the content before.
+
+const manniskor = ['lily', 'oli', 'minny'];
+
+manniskor.forEach(man => {
+    content.innerHTML += ` ${man}`;
+});
+
+const link = document.querySelector('a');
+//if we want to get the attribute(in dis case the href):
+console.log(link.getAttribute('href'));
+//if we want to change an attribute:
+link.setAttribute('href', 'https://www.youtube.com');
+link.innerText = 'My new website hehehh';
+
+const mssg = document.querySelector('h1');
+
+console.log(mssg.getAttribute('id'));
+mssg.setAttribute('id', 'success'); //this changed the id name to successs
+mssg.setAttribute('style', 'color: pink'); //this change the font color to pink
+
+//instead of using setAttribute
+const mssgOne = document.querySelector('h1');
+
+mssgOne.style.color = 'crimson';
+mssgOne.style.margin = '50px';
+mssgOne.style.fontSize = '100px';
+
+console.log(mssgOne.style); // this will help you see which style declarations there are...
+
+// Adding and removing classes
+const nike = document.querySelector('p');
+
+console.log(nike.classList);
+nike.classList.add('nike'); //if a tag doesnt have a class you can add one like dis
+nike.classList.remove('nike'); //removing the class
+
+
+const allOfEm = document.querySelectorAll('p');
+
+allOfEm.forEach(numbaError => {
+    if(numbaError.textContent.includes('error')){
+        numbaError.classList.add('nike');
+    } else if (numbaError.textContent.includes('success')){
+        numbaError.classList.add('success');
+    } 
+});
+
+// 'classList.toggle' is also a method to add or remove a class.
+
+// Parent & children
+
+const article = document.querySelector('article');
+//'.children' will show the children in the article tag, which means all the tags inside the article tag.
+console.log(article.children);
+// but it is shown as an HTMLCollection which we can't use forEach on. We need to convert it to an array.
+console.log(Array.from(article.children)); //now the its an array.
+//now we can add a class to each element in the array
+Array.from(article.children).forEach(child => {
+    child.classList.add('article-element');
+});
+
+//if you want to find the parent element to a child:
+const ayee = document.querySelector('h2');
+console.log(ayee.parentElement); // this shows the article tag in the console
+// we can go further
+console.log(ayee.parentElement.parentElement); // this shows the <body></body> in hte console.
+// we can also see the sibling
+console.log(ayee.nextElementSibling);
+// we can als see the previous element 
+console.log(ayee.previousElementSibling);
+// there's also chaining
+console.log(ayee.nextElementSibling.parentElement.children); //this shows the article tag and all the tags within it.
+
+
+//addEventListener, event bubbling and event delegation
+const uli = document.querySelector('ul');
+//ul.remove();
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+    const li = document.createElement('li');
+    li.textContent = 'someting new to do';
+    // uli.append(li); //appends it to the html, but it places it at the bottom
+    uli.prepend(li); //appends but it places it to the top.
+});
+
+//This targets one single li tag to act the way we want it to
+// const items = document.querySelectorAll('li');
+
+// items.forEach(item => {
+//     item.addEventListener('click', event => {
+//         //console.log('item clicked');
+//         // console.log(event);
+//         // console.log(event.target); //shows the full tag on console when clicked on
+//         // console.log(item);
+//         event.target.style.textDecoration = 'line-through'; //when the li tag is clicked on a line will cross it out.
+//         event.stopPropagation(); //this will make sure nothing unnecessary will happpen after a screen reader clicks on the event.
+//         event.target.remove(); // removes the tag when clicked on
+//     });
+// });
+
+//Now we target the ul tag, that way we will reach all tags inside plus allt the new ones that comes after we click on the button!! cleaner coding:
+uli.addEventListener('click', event => {
+    // console.log(event);
+    if(event.target.tagName === 'LI') {
+        event.target.remove();
+    }
+});
+
+const copy = document.querySelector('.copy-me');
+
+copy.addEventListener('copy', () => {
+    console.log('GET YOUR HANDS OF MY COPYRIGHTED CONTENT');
+});
+
+const box = document.querySelector('.box');
+
+box.addEventListener('mousemove', e => {
+    //console.log(e);
+    // console.log(e.offsetX, e.offsetY);
+    box.textContent = `x pos - ${e.offsetX}  y pos - ${e.offsetY}`;
+});
+
+//wheel event, lol
+document.addEventListener('wheel', e => {
+    console.log(e.pageX, e.pageY);
+});
